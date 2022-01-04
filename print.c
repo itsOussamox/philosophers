@@ -19,5 +19,6 @@ void	print_philo(t_philo *philo, char *str)
 	now = get_time();
 	pthread_mutex_lock(&philo->data->print);
 	printf("%u\t%d\t%s\n", now - philo->data->create_date, philo->n + 1, str);
-	pthread_mutex_unlock(&philo->data->print);
+	if (!philo->data->finish)
+		pthread_mutex_unlock(&philo->data->print);
 }

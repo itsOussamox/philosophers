@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:12:34 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/04 18:04:07 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/04 22:17:55 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ unsigned int get_time(void)
 static int	philo_fill(t_data *data)
 {
 	int	i;
-	pthread_t	temp;
 
 	i = -1;
 	pthread_mutex_init(&data->print, NULL);
-	pthread_mutex_init(&data->dead, NULL);
 	data->create_date = get_time();
 	while (++i < data->num_of_philos)
 	{
@@ -38,18 +36,15 @@ static int	philo_fill(t_data *data)
 		data->philos[i].data = data;
 		data->philos[i].last_meal = data->create_date;
 		pthread_mutex_init(&data->forks[i], NULL);
-		pthread_mutex_init(&data->philos[i].check_mutex, NULL);
-		pthread_create(&data->philos[i].thread, NULL, monitor, &data->philos[i]);
-		pthread_create(&temp, NULL, check_death, &data->philos[i]);
-		pthread_detach(temp);
-		// usleep(100);
+		if (pthread_create(&data->philos[i].thread, NULL, &monitor, &data->philos[i]))
+			return (PTHREAD_CREATE_ERROR);
+		if (pthread_detach(data->philos[i].thread))
+			return (PTHREAD_JOIN_ERROR);
 	}
-	i = -1;
+	/* i = -1;
 	while (++i < data->num_of_philos)
-	{
-		pthread_detach(data->philos[i].thread);
-		// usleep(100);
-	}
+		if (pthread_detach(data->philos[i].thread))
+			return (PTHREAD_JOIN_ERROR); */
 	return (0);
 }
 

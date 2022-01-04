@@ -21,13 +21,10 @@ void	*check_death(void *arg)
 	while (philo->data->finish == 0)
 	{
 		now = get_time();
-		if (now - philo->last_meal >= philo->data->time_to_die)
+		if (now - philo->last_meal > philo->data->time_to_die)
 		{
-			// pthread_mutex_lock(&philo->check_mutex);
-			pthread_mutex_lock(&philo->data->dead);
-			philo->data->finish = 1;
 			print_philo(philo, "died");
-			pthread_mutex_unlock(&philo->data->main);
+			philo->data->finish = 1;
 		}
 	}
 	return (0);
