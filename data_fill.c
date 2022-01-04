@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:12:34 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/04 22:17:55 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/04 22:55:40 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ unsigned int get_time(void)
 	return (time.tv_usec + time.tv_sec);
 }
 
-static int	philo_fill(t_data *data)
+static	void	philo_info(t_data *data)
 {
 	int	i;
 
 	i = -1;
+	data->finish = 0;
 	pthread_mutex_init(&data->print, NULL);
 	data->create_date = get_time();
 	while (++i < data->num_of_philos)
@@ -34,17 +35,25 @@ static int	philo_fill(t_data *data)
 		data->philos[i].n = i;
 		data->philos[i].n1 = (i + 1) % data->num_of_philos;
 		data->philos[i].data = data;
-		data->philos[i].last_meal = data->create_date;
+		data->philos[i].last_meal = get_time() + data->time_to_die;
 		pthread_mutex_init(&data->forks[i], NULL);
+	}
+}
+static int	philo_fill(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->num_of_philos)
+	{
 		if (pthread_create(&data->philos[i].thread, NULL, &monitor, &data->philos[i]))
 			return (PTHREAD_CREATE_ERROR);
-		if (pthread_detach(data->philos[i].thread))
-			return (PTHREAD_JOIN_ERROR);
+		usleep(100);
 	}
-	/* i = -1;
+	i = -1;
 	while (++i < data->num_of_philos)
 		if (pthread_detach(data->philos[i].thread))
-			return (PTHREAD_JOIN_ERROR); */
+			return (PTHREAD_JOIN_ERROR);
 	return (0);
 }
 
@@ -65,7 +74,7 @@ int	data_fill(int ac, char **av, t_data *data)
 	data->forks = ft_calloc(data->num_of_philos, sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (MALLOC_ERROR);
-	data->finish = 0;
+	philo_info(data);
 	if (philo_fill(data))
 		return (PTHREAD_CREATE_ERROR);
 	return (0);
