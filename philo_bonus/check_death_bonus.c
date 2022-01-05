@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_program.c                                      :+:      :+:    :+:   */
+/*   check_death_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 16:15:25 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/05 10:57:01 by obouadel         ###   ########.fr       */
+/*   Created: 2022/01/05 19:19:18 by obouadel          #+#    #+#             */
+/*   Updated: 2022/01/05 20:37:12 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-static void	malloc_er(t_data *data)
+void	*check_death(void *arg)
 {
-	if (data->philos)
-		free(data->philos);
-	write(2, "Error: MALLOC ERROR\n", 20);
-}
-
-int	end_program(int err, t_data *data)
-{
-	if (err == WRONG_ARGUMENTS)
-		write(2, "Error: WRONG ARGUMENTS\n", 23);
-	if (err == MALLOC_ERROR)
-		malloc_er(data);
-	return (1);
+	
+	
 }

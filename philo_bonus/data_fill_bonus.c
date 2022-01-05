@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_fill.c                                        :+:      :+:    :+:   */
+/*   data_fill_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:12:34 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/05 10:55:49 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/05 20:50:08 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 unsigned int	get_time(void)
 {
@@ -22,39 +22,24 @@ unsigned int	get_time(void)
 	return (time.tv_usec + time.tv_sec);
 }
 
-static	void	philo_info(t_data *data)
+static int	philo_fill(t_data *data)
 {
 	int	i;
+	int	id;
 
-	i = -1;
-	data->finish = 0;
-	pthread_mutex_init(&data->print, NULL);
-	pthread_mutex_init(&data->eat, NULL);
+	sem_init(&data->forks, 1, (unsigned int)data->num_of_philos);
+	sem_init(&data->print, 1, 1);
+	i = 0;
 	data->create_date = get_time();
 	while (++i < data->num_of_philos)
 	{
 		data->philos[i].n = i;
-		data->philos[i].n1 = (i + 1) % data->num_of_philos;
 		data->philos[i].data = data;
 		data->philos[i].death_time = get_time() + data->time_to_die;
-		pthread_mutex_init(&data->forks[i], NULL);
+		id = fork();
+		if (id == 0)
+			monitor(&data->philos[i]);
 	}
-}
-
-static void	philo_fill(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	while (++i < data->num_of_philos)
-	{
-		pthread_create(&data->philos[i].thread, NULL, \
-		&monitor, &data->philos[i]);
-		usleep(100);
-	}
-	i = -1;
-	while (++i < data->num_of_philos)
-		pthread_detach(data->philos[i].thread);
 }
 
 int	data_fill(int ac, char **av, t_data *data)
@@ -70,10 +55,6 @@ int	data_fill(int ac, char **av, t_data *data)
 	data->philos = ft_calloc(data->num_of_philos, sizeof(t_philo));
 	if (!data->philos)
 		return (MALLOC_ERROR);
-	data->forks = ft_calloc(data->num_of_philos, sizeof(pthread_mutex_t));
-	if (!data->forks)
-		return (MALLOC_ERROR);
-	philo_info(data);
 	philo_fill(data);
 	return (0);
 }

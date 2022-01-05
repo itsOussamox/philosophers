@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   end_program_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 10:40:36 by obouadel          #+#    #+#             */
-/*   Updated: 2021/12/22 13:19:28 by obouadel         ###   ########.fr       */
+/*   Created: 2022/01/04 16:15:25 by obouadel          #+#    #+#             */
+/*   Updated: 2022/01/05 16:11:52 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-int	ft_isdigit(int c)
+static void	malloc_er(t_data *data)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
+	(void)data;
+	write(2, "Error: MALLOC ERROR\n", 20);
+}
+
+int	end_program(int err, t_data *data)
+{
+	if (err == WRONG_ARGUMENTS)
+		write(2, "Error: WRONG ARGUMENTS\n", 23);
+	if (err == MALLOC_ERROR)
+		malloc_er(data);
+	return (1);
 }
