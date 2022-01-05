@@ -21,7 +21,7 @@ void	*check_death(void *arg)
 	while (philo->data->finish == 0)
 	{
 		now = get_time();
-		if (now > philo->last_meal)
+		if (now > philo->death_time)
 		{
 			print_philo(philo, "died");
 			philo->data->finish = 1;

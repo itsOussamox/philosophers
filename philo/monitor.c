@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 17:19:33 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/04 22:54:51 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/05 10:12:15 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	take_forks(t_philo *philo)
 static void	eat(t_philo *philo)
 {
 	print_philo(philo, "is eating");
-	philo->last_meal = get_time() + philo->data->time_to_die;
+	philo->death_time = get_time() + philo->data->time_to_die;
 	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_unlock(&philo->data->forks[philo->n]);
 	pthread_mutex_unlock(&philo->data->forks[philo->n1]);
@@ -48,8 +48,6 @@ void	*monitor(void *arg)
 	philo = arg;
 	pthread_create(&dead_thread, NULL, check_death, philo);
 	pthread_detach(dead_thread);
-	/* if (philo->n % 2 == 0)
-		usleep(philo->data->time_to_eat * 1000); */
 	while (!philo->data->finish)
 	{
 		take_forks(philo);
