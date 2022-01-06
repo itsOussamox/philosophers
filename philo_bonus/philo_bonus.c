@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 19:24:11 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 19:31:46 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 20:11:26 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int	main(int ac, char **av)
 		return (end_program(error, &data));
 	sem_wait(data.main);
 	clean_exit(&data);
+	puts("end");
 	return (0);
 }

@@ -26,6 +26,7 @@ void	*check_eat(void *arg)
 			pthread_mutex_unlock(&philo->data->main);
 			philo->data->finish = 1;
 		}
+		usleep(300);
 	}
 	return (0);
 }

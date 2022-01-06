@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:12:38 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 18:49:44 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 19:47:25 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	*monitor(void *arg)
 	}
 	while (!philo->data->finish)
 	{
+		think(philo);
 		take_forks(philo);
 		eat(philo);
 		psleep(philo);
-		think(philo);
 	}
 	return (0);
 }
