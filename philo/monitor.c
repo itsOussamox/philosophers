@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:12:38 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 19:47:25 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 20:30:09 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	take_forks(t_philo *philo)
 
 static void	eat(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->eating);
 	print_philo(philo, "is eating");
 	philo->death_time = get_time() + philo->data->time_to_die;
 	pthread_mutex_lock(&philo->data->eat);
@@ -30,6 +31,7 @@ static void	eat(t_philo *philo)
 		philo->data->eat_finish++;
 	pthread_mutex_unlock(&philo->data->eat);
 	usleep(philo->data->time_to_eat * 1000);
+	pthread_mutex_unlock(&philo->eating);
 	pthread_mutex_unlock(&philo->data->forks[philo->n]);
 	pthread_mutex_unlock(&philo->data->forks[philo->n1]);
 }
@@ -54,6 +56,7 @@ void	*monitor(void *arg)
 	philo = arg;
 	pthread_create(&dead_thread, NULL, check_death, philo);
 	pthread_detach(dead_thread);
+	philo->death_time = get_time() + philo->data->time_to_die;
 	if (philo->data->num_of_must_eat > 0)
 	{
 		pthread_create(&eat_thread, NULL, check_eat, philo);

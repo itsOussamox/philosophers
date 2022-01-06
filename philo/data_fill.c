@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:12:34 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 19:27:05 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 20:29:03 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static	void	philo_info(t_data *data)
 		data->philos[i].data = data;
 		data->philos[i].death_time = get_time() + data->time_to_die;
 		pthread_mutex_init(&data->forks[i], NULL);
+		pthread_mutex_init(&data->philos[i].eating, NULL);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 19:24:51 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 19:27:00 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 20:28:33 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_philo
 	unsigned int	death_time;
 	pthread_t		thread;
 	struct s_data	*data;
-
+	pthread_mutex_t	eating;
 }					t_philo;
 
 typedef struct s_data

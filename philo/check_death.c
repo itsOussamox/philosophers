@@ -21,10 +21,10 @@ void	*check_eat(void *arg)
 	{
 		if (philo->data->eat_finish >= philo->data->num_of_philos)
 		{
+			philo->data->finish = 1;
 			pthread_mutex_lock(&philo->data->print);
 			pthread_mutex_lock(&philo->data->eat);
 			pthread_mutex_unlock(&philo->data->main);
-			philo->data->finish = 1;
 		}
 		usleep(300);
 	}
@@ -40,13 +40,14 @@ void	*check_death(void *arg)
 	while (philo->data->finish == 0)
 	{
 		now = get_time();
-		if (now >= philo->death_time)
+		if (now > philo->death_time)
 		{
 			print_philo(philo, "died");
+			pthread_mutex_lock(&philo->eating);
 			pthread_mutex_lock(&philo->data->print);
 			pthread_mutex_unlock(&philo->data->main);
 		}
-		usleep(500);
+		usleep(300);
 	}
 	return (0);
 }
