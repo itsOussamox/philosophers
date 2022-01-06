@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:12:34 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/05 10:55:49 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 15:05:47 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	data_fill(int ac, char **av, t_data *data)
 	if (ac == 6)
 		data->num_of_must_eat = ft_atoi(av[5]);
 	else
-		data->num_of_must_eat = -1;
+		data->num_of_must_eat = 0;
 	data->philos = ft_calloc(data->num_of_philos, sizeof(t_philo));
 	if (!data->philos)
 		return (MALLOC_ERROR);

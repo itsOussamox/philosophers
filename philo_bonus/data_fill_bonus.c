@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:12:34 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/05 20:50:08 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 15:14:25 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,19 @@ unsigned int	get_time(void)
 	return (time.tv_usec + time.tv_sec);
 }
 
+static void	open_semaphores(t_data *data)
+{
+	data-
+
+}
+
 static int	philo_fill(t_data *data)
 {
 	int	i;
 	int	id;
 
-	sem_init(&data->forks, 1, (unsigned int)data->num_of_philos);
-	sem_init(&data->print, 1, 1);
 	i = 0;
+	open_semaphores(data);
 	data->create_date = get_time();
 	while (++i < data->num_of_philos)
 	{
