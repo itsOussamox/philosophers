@@ -21,9 +21,9 @@ void	*check_eat(void *arg)
 	{
 		if (philo->data->eat_finish >= philo->data->num_of_philos)
 		{
-			philo->data->finish = 1;
 			pthread_mutex_lock(&philo->data->print);
 			pthread_mutex_lock(&philo->data->eat);
+			philo->data->finish = 1;
 		}
 	}
 	return (0);
