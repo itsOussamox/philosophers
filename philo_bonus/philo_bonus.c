@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 19:24:11 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 18:03:28 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 18:52:40 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	clean_exit(t_data *data)
 	sem_unlink("main");
 	sem_unlink("print");
 	free(data->philos);
+	exit(EXIT_SUCCESS);
 }
 
 void	unlink_semaphores(void)
@@ -52,6 +53,6 @@ int	main(int ac, char **av)
 	if (error)
 		return (end_program(error, &data));
 	sem_wait(data.main);
-	clean_exit(&data);	
+	clean_exit(&data);
 	return (0);
 }

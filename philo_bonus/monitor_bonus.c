@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 17:19:33 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 18:06:59 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 18:52:13 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static void	eat(t_philo *philo)
 	print_philo(philo, "is eating");
 	philo->death_time = get_time() + philo->data->time_to_die;
 	philo->num_of_eat++;
-	if (philo->data->num_of_must_eat > 0 && philo->num_of_eat == philo->data->num_of_must_eat)
+	if (philo->data->num_of_must_eat > 0
+		&& philo->num_of_eat == philo->data->num_of_must_eat)
 		sem_post(philo->data->twoforks);
 	usleep(philo->data->time_to_eat * 1000);
 	sem_post(philo->data->forks);

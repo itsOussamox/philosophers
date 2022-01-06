@@ -23,6 +23,7 @@ void	*check_eat(void *arg)
 		{
 			philo->data->finish = 1;
 			pthread_mutex_lock(&philo->data->print);
+			pthread_mutex_lock(&philo->data->eat);
 		}
 	}
 	return (0);

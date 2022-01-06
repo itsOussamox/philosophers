@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 16:15:25 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 15:42:45 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 18:51:26 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	sem_er(t_data *data)
 	if (data->philos)
 		free(data->philos);
 	if (data->forks != SEM_FAILED)
-		sem_close(data->forks);	
+		sem_close(data->forks);
 	if (data->main != SEM_FAILED)
-		sem_close(data->main);	
+		sem_close(data->main);
 	if (data->print != SEM_FAILED)
-		sem_close(data->print);	
+		sem_close(data->print);
 }
 
 static void	malloc_er(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:19:18 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 18:01:17 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 18:51:04 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*check_eat(void *arg)
 {
-	int			i;
+	int		i;
 	t_data	*data;
 
 	data = arg;
