@@ -16,8 +16,10 @@ void	print_philo(t_philo *philo, char *str)
 {
 	unsigned int	now;
 
-	sem_wait(&philo->data->print);
 	now = get_time();
+	sem_wait(philo->data->print);
 	printf("%u\t%d\t%s\n", now - philo->data->create_date, philo->n + 1, str);
-	sem_post(&philo->data->print);
+	if (philo->data->finish == 1)
+		return ;
+	sem_post(philo->data->print);
 }

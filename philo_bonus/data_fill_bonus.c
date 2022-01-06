@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:12:34 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 15:14:25 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 18:04:37 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,38 @@ unsigned int	get_time(void)
 	return (time.tv_usec + time.tv_sec);
 }
 
-static void	open_semaphores(t_data *data)
+static int	open_semaphores(t_data *data)
 {
-	data-
-
+	data->forks = sem_open("forks", O_CREAT, 0644, data->num_of_philos);
+	if (data->forks == SEM_FAILED)
+		return (0);
+	data->main = sem_open("main", O_CREAT, 0644, 0);
+	if (data->main == SEM_FAILED)
+		return (0);
+	data->print = sem_open("print", O_CREAT, 0644, 1);
+	if (data->print == SEM_FAILED)
+		return (0);
+	data->twoforks = sem_open("twoforks", O_CREAT, 0644, 0);
+	if (data->print == SEM_FAILED)
+		return (0);
+	return (1);
 }
 
 static int	philo_fill(t_data *data)
 {
-	int	i;
-	int	id;
+	int			i;
+	int			id;
+	pthread_t	temp;
 
-	i = 0;
-	open_semaphores(data);
+	i = -1;
+	if (!open_semaphores(data))
+		return (SEM_ERROR);
 	data->create_date = get_time();
+	if (data->num_of_must_eat > 0)
+	{
+		pthread_create(&temp, NULL, check_eat, data);
+		pthread_detach(temp);
+	}
 	while (++i < data->num_of_philos)
 	{
 		data->philos[i].n = i;
@@ -44,7 +62,9 @@ static int	philo_fill(t_data *data)
 		id = fork();
 		if (id == 0)
 			monitor(&data->philos[i]);
+		data->philos[i].id = id;
 	}
+	return (1);
 }
 
 int	data_fill(int ac, char **av, t_data *data)
@@ -56,7 +76,7 @@ int	data_fill(int ac, char **av, t_data *data)
 	if (ac == 6)
 		data->num_of_must_eat = ft_atoi(av[5]);
 	else
-		data->num_of_must_eat = -1;
+		data->num_of_must_eat = 0;
 	data->philos = ft_calloc(data->num_of_philos, sizeof(t_philo));
 	if (!data->philos)
 		return (MALLOC_ERROR);

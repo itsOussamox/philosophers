@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 19:24:11 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 14:51:44 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 18:10:01 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int	main(int ac, char **av)
 	error = data_fill(ac, av, &data);
 	if (error)
 		return (end_program(error, &data));
-	while (!data.finish)
-		usleep(10);
+	while (!data.finish) ;
 	free_philos(&data);
 	return (0);
 }

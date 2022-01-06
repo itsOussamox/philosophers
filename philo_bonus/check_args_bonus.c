@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:05:00 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/05 16:02:20 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 15:40:20 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ static int	check_numeric(int ac, char **av)
 
 static int	valid_arg(int ac, char **av)
 {
-	if (ft_atoi(av[1]) < 0 || ft_atoi(av[2]) < 0 || ft_atoi(av[3]) < 0)
+	if (ft_atoi(av[1]) < 2 || ft_atoi(av[2]) < 0 || ft_atoi(av[3]) < 0)
 		return (1);
-	if (ft_atoi(av[4]) < 0 || ft_atoi(av[ac - 1]) < 0)
+	if (ft_atoi(av[4]) < 0)
+		return (1);
+	if (ac == 6 && ft_atoi(av[5]) <= 0)
 		return (1);
 	return (0);
 }

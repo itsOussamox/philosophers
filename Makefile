@@ -6,7 +6,7 @@
 #    By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 15:31:20 by obouadel          #+#    #+#              #
-#    Updated: 2022/01/05 20:39:35 by obouadel         ###   ########.fr        #
+#    Updated: 2022/01/06 15:37:01 by obouadel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS_BONUS =	./philo_bonus/philo_bonus.c \
 				./philo_bonus/data_fill_bonus.c \
 				./philo_bonus/monitor_bonus.c \
 				./philo_bonus/print_bonus.c \
+				./philo_bonus/check_death_bonus.c \
 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 

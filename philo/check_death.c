@@ -20,7 +20,10 @@ void	*check_eat(void *arg)
 	while (philo->data->finish == 0)
 	{
 		if (philo->data->eat_finish >= philo->data->num_of_philos)
+		{
 			philo->data->finish = 1;
+			pthread_mutex_lock(&philo->data->print);
+		}
 	}
 	return (0);
 }
