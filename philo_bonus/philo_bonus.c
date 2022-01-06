@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 19:24:11 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 18:52:40 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 19:31:46 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ void	clean_exit(t_data *data)
 	sem_unlink("twoforks");
 	sem_unlink("main");
 	sem_unlink("print");
+	sem_unlink("eat");
 	free(data->philos);
 	exit(EXIT_SUCCESS);
 }
 
 void	unlink_semaphores(void)
 {
+	sem_unlink("eat");
 	sem_unlink("forks");
 	sem_unlink("twoforks");
 	sem_unlink("main");

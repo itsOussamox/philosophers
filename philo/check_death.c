@@ -23,6 +23,7 @@ void	*check_eat(void *arg)
 		{
 			pthread_mutex_lock(&philo->data->print);
 			pthread_mutex_lock(&philo->data->eat);
+			pthread_mutex_unlock(&philo->data->main);
 			philo->data->finish = 1;
 		}
 	}
@@ -38,12 +39,13 @@ void	*check_death(void *arg)
 	while (philo->data->finish == 0)
 	{
 		now = get_time();
-		if (now > philo->death_time)
+		if (now >= philo->death_time)
 		{
 			print_philo(philo, "died");
-			philo->data->finish = 1;
 			pthread_mutex_lock(&philo->data->print);
+			pthread_mutex_unlock(&philo->data->main);
 		}
+		usleep(500);
 	}
 	return (0);
 }

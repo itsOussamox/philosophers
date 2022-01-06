@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 19:24:51 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 17:37:02 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 19:32:29 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 	int				n1;
 	int				num_of_eat;
 	unsigned int	death_time;
+	sem_t			*eat;
 	pthread_t		thread;
 	struct s_data	*data;
 }					t_philo;

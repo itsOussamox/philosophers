@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 19:24:51 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/05 10:45:19 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 19:27:00 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	eat;
+	pthread_mutex_t	main;
 	t_philo			*philos;
 }					t_data;
 

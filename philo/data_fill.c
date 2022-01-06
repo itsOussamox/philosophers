@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:12:34 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 15:05:47 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 19:27:05 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static	void	philo_info(t_data *data)
 	data->finish = 0;
 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->eat, NULL);
+	pthread_mutex_init(&data->main, NULL);
+	pthread_mutex_lock(&data->main);
 	data->create_date = get_time();
 	while (++i < data->num_of_philos)
 	{

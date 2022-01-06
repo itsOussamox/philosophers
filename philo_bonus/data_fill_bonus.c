@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 18:12:34 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 18:04:37 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 19:42:49 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ static int	philo_fill(t_data *data)
 	pthread_t	temp;
 
 	i = -1;
-	if (!open_semaphores(data))
-		return (SEM_ERROR);
 	data->create_date = get_time();
 	if (data->num_of_must_eat > 0)
 	{
@@ -59,12 +57,15 @@ static int	philo_fill(t_data *data)
 		data->philos[i].n = i;
 		data->philos[i].data = data;
 		data->philos[i].death_time = get_time() + data->time_to_die;
+		data->philos[i].eat = sem_open("eat", O_CREAT, 0644, 1);
+		if (data->print == SEM_FAILED)
+			return (SEM_ERROR);
 		id = fork();
 		if (id == 0)
 			monitor(&data->philos[i]);
 		data->philos[i].id = id;
 	}
-	return (1);
+	return (0);
 }
 
 int	data_fill(int ac, char **av, t_data *data)
@@ -80,6 +81,7 @@ int	data_fill(int ac, char **av, t_data *data)
 	data->philos = ft_calloc(data->num_of_philos, sizeof(t_philo));
 	if (!data->philos)
 		return (MALLOC_ERROR);
-	philo_fill(data);
-	return (0);
+	if (!open_semaphores(data))
+		return (SEM_ERROR);
+	return (philo_fill(data));
 }

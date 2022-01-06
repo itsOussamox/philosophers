@@ -6,7 +6,7 @@
 /*   By: obouadel <obouadel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 19:24:11 by obouadel          #+#    #+#             */
-/*   Updated: 2022/01/06 18:50:19 by obouadel         ###   ########.fr       */
+/*   Updated: 2022/01/06 19:29:10 by obouadel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	free_philos(t_data *data)
 		pthread_mutex_destroy(&data->forks[i]);
 	pthread_mutex_destroy(&data->print);
 	pthread_mutex_destroy(&data->eat);
+	pthread_mutex_destroy(&data->main);
 	free(data->philos);
 	free(data->forks);
 }
@@ -37,8 +38,7 @@ int	main(int ac, char **av)
 	error = data_fill(ac, av, &data);
 	if (error)
 		return (end_program(error, &data));
-	while (!data.finish)
-		usleep(5);
+	pthread_mutex_lock(&data.main);
 	free_philos(&data);
 	return (0);
 }
