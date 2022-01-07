@@ -10,12 +10,12 @@ the mutex, semaphore and shared memory.
 ## SOURCES
 
 -->thread :
-https://www.pcerror-fix.com/about-processor-threads
-https://www.youtube.com/watch?v=uA8X5zNOGw8&list=PL9IEJIKnBJjFZxuqyJ9JqVYmuFZHr7CFM
-https://computing.llnl.gov/tutorials/pthreads/
-http://www.csc.villanova.edu/~mdamian/threads/posixthreads.html#exercise_2
-https://timmurphy.org/2010/05/04/pthreads-in-c-a-minimal-working-example/
-https://www.ai.univ-paris8.fr/~alinehuf/m1/cours2-3/cours2-3_threads_acces_concurents.pdf
+https://www.pcerror-fix.com/about-processor-threads ||
+https://www.youtube.com/watch?v=uA8X5zNOGw8&list=PL9IEJIKnBJjFZxuqyJ9JqVYmuFZHr7CFM ||
+https://computing.llnl.gov/tutorials/pthreads/ ||
+http://www.csc.villanova.edu/~mdamian/threads/posixthreads.html#exercise_2 ||
+https://timmurphy.org/2010/05/04/pthreads-in-c-a-minimal-working-example/ || 
+https://www.ai.univ-paris8.fr/~alinehuf/m1/cours2-3/cours2-3_threads_acces_concurents.pdf ||
 
 -->fork :
 https://www.youtube.com/watch?v=PwxTbksJ2fo
