@@ -1,4 +1,4 @@
-# Philosophers [![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/obouadel/philosophers)](https://github.com/JaeSeoKim/badge42)
+# Philosophers [![jaeskim's 42Project Score](https://badge42.herokuapp.com/api/project/obouadel/Philosophers)](https://github.com/JaeSeoKim/badge42)
 
 I’ve never thought philosophy would be so deadly.
 
